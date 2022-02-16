@@ -33,14 +33,12 @@ void test() {
 ## importとは
 `import`はファイルを参照します。
 ```php: one.dart
-part 'two.dart';
+import 'two.dart';
 
 test();  // print 'test'
 ```
 
 ```php: two.dart
-part of 'one.dart';
-
 void test() {
     print('test');
 }
