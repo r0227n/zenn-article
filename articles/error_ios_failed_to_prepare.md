@@ -1,5 +1,6 @@
 ---
-title: "「This operation can fail if the version ...」と表示され、実機検証できない時の解決方法"
+title: "iPhone実機デバッグ時「Failed to prepare device for development.
+This ...」の解決"
 emoji: "😹"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Swift, Xcode, Flutter]
