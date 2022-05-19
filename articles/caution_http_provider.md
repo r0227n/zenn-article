@@ -1,5 +1,5 @@
 ---
-title: "[Flutter]「Connection attempt cancelled, host: www.googleapis.com, port: 443」エラーの対処法"
+title: "「flutter: Connection attempt cancelled, host: ...」の対処法"
 emoji: "🐡"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter, Dart, http]
