@@ -59,7 +59,7 @@ flutter: SocketException: Connection attempt cancelled, host: www.googleapis.com
 `doctor`コマンドで確認したが、HTTPリクエストを全て利用できていることが確認できました。
 
 # 原因
-**Automatic field initialization**で`Client`のインスタンスを取得しているが原因でした...
+**Automatic field initialization**で`Client`のインスタンスを取得していることが原因でした...
 試しに`late`で宣言し、constructorで初期化しました。その結果、うまく動作しました！
 :::details 正常に動くコード
 ```dart: good.dart
@@ -91,4 +91,4 @@ class GoogleBooksApiClient {
 :::
 
 # まとめ
-`Provider`ないでインスタンスを発行し、`onDispose`で`close()`するのではなくclass内で`close()`しましょう。
+`Provider`内でインスタンスを発行し、`onDispose`で`close()`ではなくclass内で`close()`しましょう。
