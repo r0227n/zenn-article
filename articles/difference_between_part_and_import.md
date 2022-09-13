@@ -7,7 +7,7 @@ published: true
 ---
 
 # はじめに
-こんにちは、[Ryo24](https://twitter.com/r0227n_)です。  
+こんにちは、[Ryo24](https://twitter.com/r0227n_)です。
 Dartは`part`と`import`の2種類でファイルを参照することができます。  
 本記事は2つの違いと使い分けに関して自分用のメモとして書きました。
 
