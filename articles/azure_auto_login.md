@@ -1,5 +1,5 @@
 ---
-title: "Azure自動ログイン方法"
+title: "ブラウザ認証をスキップし、CLIでAzureにログインする方法"
 emoji: "🔐"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Azure]
