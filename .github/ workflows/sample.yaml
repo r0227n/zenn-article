@@ -1,0 +1,14 @@
+on:
+  push
+
+jobs:
+  parse_config_json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: ls
+        id: set_json_content
+        run: |
+          ls 
