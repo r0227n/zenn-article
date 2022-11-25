@@ -26,9 +26,10 @@ jobs:
       run: echo '${{ toJSON(github) }}'
     - name: Get HEAD commit date & files
       run: |
+        git log --name-only
         git show --format=%cd --name-status > commit_info.txt
-        git show --format= --name-status > commit_info.txt
-        git show --format= --name-status
+        git show HEAD --format= --name-status > commit_info.txt
+        git show HEAD --format= --name-status
         ls 
         pwd
     - name: Build
