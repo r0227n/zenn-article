@@ -1,8 +1,5 @@
 on:
-  push:
-    branches: [ "feature/actions" ]
-  pull_request:
-    branches: [ "main" ]
+  push
 
 defaults:
   run:
