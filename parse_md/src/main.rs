@@ -56,21 +56,17 @@ impl CommitInfo {
         let input = File::open(commit_info_path).expect("Unable to open file");
         let reader = BufReader::new(input);
 
-        let mut date = String::new();
+        let timestamp = env::var("TIME_STAMP").expect("COMMIT_INFO_PATH not found");
         let mut files = Vec::<CommitFile>::new();
         
         for line in reader.lines() {
             let line = line.unwrap();
 
-            if date.is_empty() {
-                date = line;
-            } else if !line.is_empty() {
-                let parse = Self::parse_commit_file(line).unwrap();
-                files.push(parse);
-            }
+            let parse = Self::parse_commit_file(line).unwrap();
+            files.push(parse);
         }
 
-        Ok(Self::new(date, files))
+        Ok(Self::new(timestamp, files))
     }
 
     fn parse_commit_file(line: String) -> Result<CommitFile, &'static str> {

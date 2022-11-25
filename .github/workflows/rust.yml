@@ -27,6 +27,7 @@ jobs:
     - name: Get HEAD commit date & files
       run: |
         git show --format=%cd --name-status > commit_info.txt
+        git show --format= --name-status > commit_info.txt
         ls 
         pwd
     - name: Build
@@ -37,4 +38,5 @@ jobs:
       run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
       env:
         COMMIT_INFO_PATH: commit_info.txt
+        TIME_STAMP: ${{ github.event.head_commit.timestamp }}
     
