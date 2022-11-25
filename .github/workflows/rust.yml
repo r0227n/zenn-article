@@ -22,6 +22,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+      with:
+      fetch-depth: 2
+    - run: git checkout HEAD^
     - name: Dump GitHub context
       run: echo '${{ toJSON(github) }}'
     - name: Get HEAD commit date & files
