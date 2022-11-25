@@ -28,6 +28,7 @@ jobs:
       run: |
         git show --format=%cd --name-status > commit_info.txt
         git show --format= --name-status > commit_info.txt
+        git show --format= --name-status
         ls 
         pwd
     - name: Build

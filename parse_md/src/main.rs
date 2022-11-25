@@ -64,6 +64,7 @@ impl CommitInfo {
 
             let parse = Self::parse_commit_file(line).unwrap();
             files.push(parse);
+            println!("{:?}", parse);
         }
 
         Ok(Self::new(timestamp, files))
