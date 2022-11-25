@@ -1,14 +1,38 @@
+name: Rust
+
 on:
-  push
+  push:
+    branches: [ "feature/actions" ]
+  pull_request:
+    branches: [ "main" ]
+
+defaults:
+  run:
+    shell: bash
+    working-directory: parse_md
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_PROJECT_NAME: parse_md
 
 jobs:
-  parse_config_json:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  build:
 
-      - name: ls
-        id: set_json_content
-        run: |
-          ls 
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Get HEAD commit date & files
+      run: |
+        git show --format=%cd --name-status > commit_info.txt
+        ls 
+        pwd
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
+    - name: Run rust project
+      run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
+      env:
+        COMMIT_INFO_PATH: commit_info.txt
+    
