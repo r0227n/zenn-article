@@ -44,15 +44,15 @@ jobs:
           git config --global user.name ${{ github.event.head_commit.committer.username }}
           git config --global user.email ${{ github.event.head_commit.committer.email }}
 
-          git status
-          git ls-files --modified | grep -x "../index.json" | xargs git add
-          echo 'xargs'
-          git status
-          modified=`git ls-files -m | grep -x "../index.json"` || true
+          # git status
+          # git ls-files --modified | grep -x "../index.json" | xargs git add
+          # echo 'xargs'
+          # git status
+          # modified=`git ls-files -m | grep -x "../index.json"` || true
 
-          git status
+          # git status
 
-          echo $modified
+          # echo $modified
 
           git add -u
           echo 'check'
