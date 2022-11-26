@@ -28,10 +28,8 @@ jobs:
       run: echo '${{ toJSON(github) }}'
     - name: Get HEAD commit date & files
       run: |
-        git show ${{ github.event.head_commit.id }} --format= --name-status > commit_info.txt
-        git show ${{ github.event.head_commit.id }} --format= --name-status
-        ls 
-        pwd
+        // 拡張子が.mdのファイルを取得し、commit.txtに出力
+        git show ${{ github.event.head_commit.id }} --format= --name-status | xargs grep -l '.md' || true  > commit.txt
     - name: Build
       run: cargo build --verbose
     - name: Run tests
@@ -39,6 +37,7 @@ jobs:
     - name: Run rust project
       run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
       env:
-        COMMIT_INFO_PATH: commit_info.txt
-        TIME_STAMP: ${{ github.event.head_commit.timestamp }}
+        COMMIT_INFO_PATH: commit.txt
+        TIMESTAMP: ${{ github.event.head_commit.timestamp }}
+        WORKSPACE: ${{ github.workspace }}
     

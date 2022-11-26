@@ -1,4 +1,4 @@
-use std::env;
+use std::{env, path};
 use std::fs::File;
 use core::str::FromStr;
 use std::io::{prelude::*, BufReader, Error};
@@ -10,6 +10,7 @@ use serde::{Serialize, Deserialize};
 pub struct CommitInfo {
     date: String,
     files: Vec<CommitFile>,
+    current_directory: String,
 }
 
 #[derive(Debug)]
@@ -47,8 +48,8 @@ impl FromStr for CommitStatus {
 }
 
 impl CommitInfo {
-    fn new(date: String, files: Vec<CommitFile>) -> CommitInfo {
-        CommitInfo { date, files }
+    fn new(date: String, files: Vec<CommitFile>, current_directory: String) -> CommitInfo {
+        CommitInfo { date, files, current_directory }
     }
 
     fn env() -> Result<CommitInfo, &'static str> {
@@ -56,7 +57,8 @@ impl CommitInfo {
         let input = File::open(commit_info_path).expect("Unable to open file");
         let reader = BufReader::new(input);
 
-        let timestamp = env::var("TIME_STAMP").expect("COMMIT_INFO_PATH not found");
+        let timestamp = env::var("TIMESTAMP").expect("COMMIT_INFO_PATH not found");
+        let current_directory = env::var("WORKSPACE").expect("WORKSPACE not found");
         let mut files = Vec::<CommitFile>::new();
         
         for line in reader.lines() {
@@ -67,7 +69,7 @@ impl CommitInfo {
             files.push(parse);
         }
 
-        Ok(Self::new(timestamp, files))
+        Ok(Self::new(timestamp, files, current_directory))
     }
 
     fn parse_commit_file(line: String) -> Result<CommitFile, &'static str> {
@@ -84,13 +86,10 @@ impl CommitInfo {
 
 fn main() {
     let commit_info = CommitInfo::env().unwrap();
-
+ 
     for file in commit_info.files {
-        if file.path.split(".").last().unwrap() != "md" {
-            continue;
-        }
-        println!("{:?}", file);
-        let zenn = Zenn::from_file(String::from(file.path)).unwrap();
+        let path = commit_info.current_directory.clone() + "/" + &file.path;
+        let zenn = Zenn::from_file(path).unwrap();
         let index = Index::read();
 
         let hoge = Index::write(index,zenn);
