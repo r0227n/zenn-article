@@ -47,4 +47,6 @@ jobs:
             git add -u
             git commit -m "Update index.json"
             git push
+          else
+            echo "No changes to Markdown files"
           fi
