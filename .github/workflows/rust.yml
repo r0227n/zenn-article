@@ -42,15 +42,18 @@ jobs:
       - name: Test Update
         run: |
           git status
-          git ls-files -m
-          modified=`git ls-files -m | grep -x '${{ github.workspace }}/index.json'` || true
+          git ls-files --modified | grep -x "${{ github.workspace }}/index.json" | xargs git add
+          modified=`git ls-files -m | grep -x "${{ github.workspace }}/index.json"` || true
 
           echo $modified
+          git add ${{ github.workspace }}/index.json
+          git commit -m "Update index.json"
+          git push
 
-          if [ -n "$modified" ]; then
-            git add ${{ github.workspace }}/index.json
-            git commit -m "Update index.json"
-            git push
-          else
-            echo "No changes to Markdown files"
-          fi
+          # if [ -n "$modified" ]; then
+          #   git add ${{ github.workspace }}/index.json
+          #   git commit -m "Update index.json"
+          #   git push
+          # else
+          #   echo "No changes to Markdown files"
+          # fi

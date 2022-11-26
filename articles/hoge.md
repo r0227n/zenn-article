@@ -57,9 +57,6 @@ flutter build web
 5. `Visit site`をクリック
 6. (無事にアプリが表示されたら成功です)
 
-![](https://storage.googleapis.com/zenn-user-upload/b2fbe373e7af-20221015.png)
-(GitHub Pagesにホスティングされているため、URLは`https://<GitHubのユーザー名>.github.io/<リポジトリ名>/#/`になっていますね)
-
 
 # 最後に
 今回はGitHub上のGUIでデプロイ作業をしていましたが、`Actions`を使って自動デプロイをする方法もあります。  
