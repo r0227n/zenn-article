@@ -87,7 +87,7 @@ fn main() {
     let commit_info = CommitInfo::env().unwrap();
 
     for file in commit_info.files {
-        let zenn = Zenn::new(CommitInfo::env().unwrap(), file.path).expect("Zenn::new failed");
+        let zenn = Zenn::new(CommitInfo::env().expect("Failed env"), file.path).expect("Zenn::new failed");
         let index = Index::read(env::var("WORKSPACE").expect("WORKSPACE not found"));
 
         let hoge = Index::write(index,zenn, env::var("WORKSPACE").expect("WORKSPACE not found"));
