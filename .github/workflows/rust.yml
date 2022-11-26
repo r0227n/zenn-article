@@ -47,7 +47,7 @@ jobs:
           modified=`git status | grep -i index.json$` || true
 
           if [ -n "$modified" ]; then
-            $modified | awk '{ print $2 }' | xargs git add
+            echo $modified | awk '{ print $2 }' | xargs git add
             git commit -m "Update index.json"
             git push
           else
