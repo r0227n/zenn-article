@@ -16,10 +16,5 @@ GitHub Pages初学者の私がFlutter Webで作ったアプリをデプロイす
 ```bash
 // プラットフォームをWebに設定し、プロジェクトを作成
 flutter create <プロジェクト名> --platforms web
-// プロジェクトディレクトリに移動
-cd  <プロジェクト名>
-// プロジェクトを実行
+
 flutter run
-```
-
-
