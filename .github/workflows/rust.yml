@@ -26,9 +26,9 @@ jobs:
         fetch-depth: 0
     - name: Dump GitHub context
       run: echo '${{ toJSON(github) }}'
-    - name: Get HEAD commit date & files
+    - name: Get Markdown files for this push
       run: |
-        // 拡張子が.mdのファイルを取得し、commit.txtに出力
+        # 拡張子が.mdのファイルを取得し、commit.txtに出力
         git show ${{ github.event.head_commit.id }} --format= --name-status | xargs grep -l '.md' || true  > commit.txt
     - name: Build
       run: cargo build --verbose

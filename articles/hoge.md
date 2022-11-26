@@ -51,13 +51,7 @@ flutter build web
     ├── favicon.png
     ├── icons
     ├── index.html
-    └── manifest.json
-```
 
-**build**ディレクトリに`web`ディレクトリが作成されます。この中にWebプラットフォームようにビルドされたアプリが入っています。
-
-
-### baseタグの修正
 
 
 <!-- after -->
