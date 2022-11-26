@@ -22,6 +22,4 @@ cd  <プロジェクト名>
 flutter run
 ```
 
-![](https://storage.googleapis.com/zenn-user-upload/91aec3810a1f-20221015.png)
-いるため、`http://localhost:49535/#/`になります。)
 

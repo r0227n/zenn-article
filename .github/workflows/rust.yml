@@ -41,8 +41,8 @@ jobs:
           WORKSPACE: ${{ github.workspace }}
       - name: Push to index.json
         run: |
-          git config --global user.name ${{ github.event.head_commit.committer.username }}
-          git config --global user.email ${{ github.event.head_commit.committer.email }}
+          # git config --global user.name ${{ github.event.head_commit.committer.username }}
+          # git config --global user.email ${{ github.event.head_commit.committer.email }}
 
           modified=`git status | grep -i index.json$` || true
 
