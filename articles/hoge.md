@@ -37,10 +37,4 @@ flutter build web
 ├── README.md
 ├── analysis_options.yaml
 ├── build
-│   ├── c075001b96339384a97db4862b8ab8db.cache.dill.track.dill
-│   ├── flutter_assets
-│   └── web
-├── flutter_web.iml
-├── lib
-
 

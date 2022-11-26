@@ -44,27 +44,11 @@ jobs:
           git config --global user.name ${{ github.event.head_commit.committer.username }}
           git config --global user.email ${{ github.event.head_commit.committer.email }}
 
-          # git status
-          # git ls-files --modified | grep -x "../index.json" | xargs git add
-          # echo 'xargs'
-          # git status
-          # modified=`git ls-files -m | grep -x "../index.json"` || true
+          git status | grep -i index.json$
 
-          # git status
-
-          # echo $modified
-
-          git add -u
-          echo 'check'
-          git status
-          git add ../index.json
-          git commit -m "Update index.json"
-          git push
-
-          # if [ -n "$modified" ]; then
-          #   git add ${{ github.workspace }}/index.json
-          #   git commit -m "Update index.json"
-          #   git push
-          # else
-          #   echo "No changes to Markdown files"
-          # fi
+          if [ -n "$modified" ]; then
+            git commit -m "Update index.json"
+            git push
+          else
+            echo "No changes to Markdown files"
+          fi
