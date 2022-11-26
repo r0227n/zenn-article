@@ -44,7 +44,7 @@ jobs:
           modified=`git ls-files -m | grep -x '${{ github.workspace }}/index.json'` || true
 
           if [ -n "$modified" ]; then
-            git add -u
+            git add ${{ github.workspace }}/index.json
             git commit -m "Update index.json"
             git push
           else
