@@ -110,7 +110,7 @@ impl Index {
     const FILE_NAME: &'static str = "index.json";
 
     fn read(read_directory: String) -> Index {
-        if let Ok(file) = File::open(read_directory + Self::FILE_NAME) {
+        if let Ok(file) = File::open(read_directory + "/" + Self::FILE_NAME) {
             let reader = BufReader::new(file);
             if let Ok(index) = serde_json::from_reader(reader) {
                 return index;
@@ -137,7 +137,7 @@ impl Index {
 
         let json = serde_json::to_string_pretty(&self)?;
 
-        let mut file = File::create(write_directory + Self::FILE_NAME)?;
+        let mut file = File::create(write_directory + "/" + Self::FILE_NAME)?;
         file.write_all(json.as_bytes())?;
         Ok(file)
     }

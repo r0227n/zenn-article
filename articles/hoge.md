@@ -43,12 +43,7 @@ flutter build web
 ├── flutter_web.iml
 ├── lib
 │   └── main.dart
-├── pubspec.lock
-├── pubspec.yaml
-├── test
-│   └── widget_test.dart
-└── web
-    ├── favicon.png
+
     ├── icons
     ├── index.html
 
