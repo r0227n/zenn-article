@@ -54,6 +54,7 @@ impl CommitInfo {
 
     fn env() -> Result<CommitInfo, &'static str> {
         let commit_info_path = env::var("COMMIT_INFO_PATH").expect("COMMIT_INFO_PATH not found");
+        println!("commit_info_path: {}", commit_info_path);
         let input = File::open(commit_info_path).expect("Unable to open file");
         let reader = BufReader::new(input);
 
@@ -88,7 +89,7 @@ fn main() {
     let commit_info = CommitInfo::env().unwrap();
  
     for file in commit_info.files {
-        let zenn = Zenn::from_file(file.path).unwrap();
+        let zenn = Zenn::new(commit_info.current_directory.clone(), file.path).unwrap();
         let index = Index::read(commit_info.current_directory.clone());
 
         let hoge = Index::write(index,zenn, commit_info.current_directory.clone());
@@ -192,14 +193,14 @@ impl Zenn {
         };
     }
 
-    fn from_file(path: String) -> Result<Zenn, Error> {
+    fn new(directory: String, path: String) -> Result<Zenn, Error> {
         const SPLITE: &str = "---";
 
         let mut body = HashMap::new();
         body.insert(String::from("update_at"), String::from("2021-01-01"));
         body.insert(String::from("path"), path.clone());
 
-        let input = File::open(path)?;
+        let input = File::open(directory + &path)?;
         let buffered = BufReader::new(input);
         let mut mode = SplitMode::Ready;
 

@@ -6,4 +6,3 @@ topics: [Flutter, GitHubPages, GitHub]
 published: true
 ---
 
-flutter run
