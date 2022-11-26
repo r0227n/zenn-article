@@ -42,11 +42,6 @@ flutter build web
 │   └── web
 ├── flutter_web.iml
 ├── lib
-│   └── main.dart
-
-    ├── icons
-    ├── index.html
-
 
 
 
