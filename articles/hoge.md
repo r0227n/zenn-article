@@ -51,7 +51,7 @@ flutter build web
 以上でローカルでの作業は終了です。
 容を変更
    1. `Source`を`Deploy fron a branch`に変更
-   2. `Branch`を作業中のブランチに変更し、`/docs`を指定
+   2. `Bra
 3. `Save`をクリック
 4. (数分待つ)
 5. `Visit site`をクリック
