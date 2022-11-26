@@ -60,9 +60,7 @@ flutter build web
 [baseタグ](https://www.tohoho-web.com/html/base.htm)の解説は省きますが、この修正をしないと`404 NotFound`になるので注意してください。
 
 
-git add .
-<以下省略>
-```
+
 
 `push`するときにビルドファイルは`root`ディレクトリ直下の**docs**ディレクトリに移動させてから`push`しましょう。  
 GitHub Pagesでは`root`ディレクトリもしくは**docs**ディレクトリの内容をデプロイするため、プロジェクトファイルとセットのリポジトリで管理するためには**docs**ディレクトリにビルドファイルを移動させる必要があります。
