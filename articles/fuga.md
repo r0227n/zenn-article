@@ -6,9 +6,6 @@ topics: [Flutter, GitHubPages, GitHub]
 published: true
 ---
 
-おはこんにちは〜  
-Flutterでモバイル以外のアプリ開発をしたいと考えている[Ryo24](https://twitter.com/r0227n_)です。  
-GitHub Pages初学者の私がFlutter Webで作ったアプリをデプロイする方法をメモとして残しておきます。
 
 
 (`flutter run`だとローカルホスト上に立っているため、

@@ -66,7 +66,6 @@ impl CommitInfo {
             let line = line.unwrap();
 
             let parse = Self::parse_commit_file(line).unwrap();
-            println!("{:?}", parse);
             files.push(parse);
         }
 
@@ -87,12 +86,12 @@ impl CommitInfo {
 
 fn main() {
     let commit_info = CommitInfo::env().unwrap();
- 
-    for file in commit_info.files {
-        let zenn = Zenn::new(commit_info.current_directory.clone(), file.path).unwrap();
-        let index = Index::read(commit_info.current_directory.clone());
+    let files = commit_info.files.iter().map(|file| file.path.clone()).collect::<Vec<String>>();
+    for file in files {
+        let zenn = Zenn::new(CommitInfo::env().unwrap(), file).unwrap();
+        let index = Index::read(env::var("WORKSPACE").expect("WORKSPACE not found"));
 
-        let hoge = Index::write(index,zenn, commit_info.current_directory.clone());
+        let hoge = Index::write(index,zenn, env::var("WORKSPACE").expect("WORKSPACE not found"));
         println!("{:?}",hoge);
     }
 }
@@ -193,14 +192,14 @@ impl Zenn {
         };
     }
 
-    fn new(directory: String, path: String) -> Result<Zenn, Error> {
+    fn new(commit: CommitInfo, path: String) -> Result<Zenn, Error> {
         const SPLITE: &str = "---";
 
         let mut body = HashMap::new();
-        body.insert(String::from("update_at"), String::from("2021-01-01"));
+        body.insert(String::from("update_at"), String::from(commit.date));
         body.insert(String::from("path"), path.clone());
 
-        let input = File::open(directory + &path)?;
+        let input = File::open(commit.current_directory + &path)?;
         let buffered = BufReader::new(input);
         let mut mode = SplitMode::Ready;
 
