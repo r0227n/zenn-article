@@ -42,8 +42,8 @@ jobs:
       - name: Test Update
         run: |
           git status
-          git ls-files --modified | grep -x "${{ github.workspace }}/index.json" | xargs git add
-          modified=`git ls-files -m | grep -x "${{ github.workspace }}/index.json"` || true
+          git ls-files --modified | grep -x "../index.json" | xargs git add
+          modified=`git ls-files -m | grep -x "../index.json"` || true
 
           echo $modified
           git add ${{ github.workspace }}/index.json
