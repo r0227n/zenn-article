@@ -24,12 +24,11 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - run: git checkout HEAD^ *.md
+    - run: git checkout HEAD *.md
     - name: Dump GitHub context
       run: echo '${{ toJSON(github) }}'
     - name: Get HEAD commit date & files
       run: |
-        git show --format=%cd --name-status > commit_info.txt
         git show ${{ github.event.head_commit.id }} --format= --name-status > commit_info.txt
         git show ${{ github.event.head_commit.id }} --format= --name-status
         ls 
