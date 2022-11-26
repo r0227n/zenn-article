@@ -49,13 +49,7 @@ flutter build web
 `push`するときにビルドファイルは`root`ディレクトリ直下の**docs**ディレクトリに移動させてから`push`しましょう。  
 
 以上でローカルでの作業は終了です。
-
-## GitHub 上での作業編
-### GitHub Pagesの設定
-プロジェクトを管理しているリポジトリを開きます。
-![](https://storage.googleapis.com/zenn-user-upload/e385deb74d59-20221015.png)
-1. `Settings`から`Pages`を選択します。
-2. `Build and deployment`の内容を変更
+容を変更
    1. `Source`を`Deploy fron a branch`に変更
    2. `Branch`を作業中のブランチに変更し、`/docs`を指定
 3. `Save`をクリック

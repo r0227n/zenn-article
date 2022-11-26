@@ -41,6 +41,8 @@ jobs:
           WORKSPACE: ${{ github.workspace }}
       - name: Test Update
         run: |
+          git status
+          git ls-files -m
           modified=`git ls-files -m | grep -x '${{ github.workspace }}/index.json'` || true
 
           if [ -n "$modified" ]; then
