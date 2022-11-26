@@ -56,8 +56,7 @@ flutter build web
 
 <!-- after -->
 <base href="/<リポジトリ名>/">
-```
-[baseタグ](https://www.tohoho-web.com/html/base.htm)の解説は省きますが、この修正をしないと`404 NotFound`になるので注意してください。
+意してください。
 
 
 
