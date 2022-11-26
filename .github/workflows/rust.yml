@@ -21,25 +21,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: Dump GitHub context
-      run: echo '${{ toJSON(github) }}'
-    - name: Get Markdown files for this push
-      run: |
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
+      - name: Get Markdown files for this push
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
-        git show ${{ github.event.head_commit.id }} --format= --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true
-        echo ${{ github.workspace }}/commit.txt
-        cat ${{ github.workspace }}/commit.txt
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
-    - name: Run rust project
-      run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
-      env:
-        COMMIT_INFO_PATH: ${{ github.workspace }}/commit.txt
-        TIMESTAMP: ${{ github.event.head_commit.timestamp }}
-        WORKSPACE: ${{ github.workspace }}
-    
+        run: git show ${{ github.event.head_commit.id }} --format= --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true
+    steps:          
+      - name: Build
+        run: cargo build --verbose
+      - name: Run tests
+        run: cargo test --verbose
+      - name: Run rust project
+        run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
+        env:
+          COMMIT_INFO_PATH: ${{ github.workspace }}/commit.txt
+          TIMESTAMP: ${{ github.event.head_commit.timestamp }}
+          WORKSPACE: ${{ github.workspace }}
