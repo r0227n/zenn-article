@@ -11,10 +11,6 @@ Flutterでモバイル以外のアプリ開発をしたいと考えている[Ryo
 GitHub Pages初学者の私がFlutter Webで作ったアプリをデプロイする方法をメモとして残しておきます。
 
 
-
-![](https://storage.googleapis.com/zenn-user-upload/91aec3810a1f-20221015.png)
-
-いつもの画面が表示されましたね。今回はこのページをデプロイします。
 (`flutter run`だとローカルホスト上に立っているため、`http://localhost:49535/#/`になります。)
 
 ### ビルド
