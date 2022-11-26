@@ -44,10 +44,11 @@ jobs:
           git config --global user.name ${{ github.event.head_commit.committer.username }}
           git config --global user.email ${{ github.event.head_commit.committer.email }}
 
-          modified=`git status | grep -i index.json$` || true
+          # index.jsonの相対パスを取得する
+          modified=`git status | grep -i index.json$ | sed 's/modified://g'` || true
 
           if [ -n "$modified" ]; then
-            echo $modified | awk '{ print $2 }' | xargs git add
+            git add $modified
             git commit -m "Update index.json"
             git push
           else

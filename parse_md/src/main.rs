@@ -54,7 +54,6 @@ impl CommitInfo {
 
     fn env() -> Result<CommitInfo, &'static str> {
         let commit_info_path = env::var("COMMIT_INFO_PATH").expect("COMMIT_INFO_PATH not found");
-        println!("commit_info_path: {}", commit_info_path);
         let input = File::open(commit_info_path).expect("Unable to open file");
         let reader = BufReader::new(input);
 
@@ -89,8 +88,7 @@ fn main() {
     let commit_info = CommitInfo::env().unwrap();
  
     for file in commit_info.files {
-        let path: String = commit_info.current_directory.clone() + "/" + &file.path;
-        let zenn = Zenn::from_file(path).unwrap();
+        let zenn = Zenn::from_file(file.path).unwrap();
         let index = Index::read(commit_info.current_directory.clone());
 
         let hoge = Index::write(index,zenn, commit_info.current_directory.clone());
