@@ -29,7 +29,7 @@ jobs:
     - name: Get Markdown files for this push
       run: |
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
-        git show ${{ github.event.head_commit.id }} --format= --name-status | xargs grep -l '.md' || true  > commit.txt
+        git show ${{ github.event.head_commit.id }} --format= --name-status | grep -i .md$ || true  > commit.txt
     - name: Build
       run: cargo build --verbose
     - name: Run tests
