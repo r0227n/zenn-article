@@ -86,6 +86,9 @@ fn main() {
     let commit_info = CommitInfo::env().unwrap();
 
     for file in commit_info.files {
+        if file.path.split(".").last().unwrap() != "md" {
+            continue;
+        }
         println!("{:?}", file);
         let zenn = Zenn::from_file(String::from(file.path)).unwrap();
         let index = Index::read();
