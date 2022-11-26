@@ -30,6 +30,8 @@ jobs:
       run: |
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
         git show ${{ github.event.head_commit.id }} --format= --name-status | grep -i .md$ || true > ${{ github.workspace }}/commit.txt
+        echo ${{ github.workspace }}/commit.txt
+        cat ${{ github.workspace }}/commit.txt
     - name: Build
       run: cargo build --verbose
     - name: Run tests
