@@ -10,15 +10,6 @@ published: true
 
 (`flutter run`だとローカルホスト上に立っているため、
 
-### ビルド
-```bash
-flutter build web 
-```
-プラットフォームをWebに指定し、ビルドします。そうすると
-```
-.
-├── README.md
-├── analysis_options.yaml
 ├── build
 │   ├── c075001b96339384a97db4862b8ab8db.cache.dill.track.dill
 │   ├── flutter_assets
