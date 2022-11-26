@@ -54,7 +54,6 @@ impl CommitInfo {
 
     fn env() -> Result<CommitInfo, &'static str> {
         let commit_info_path = env::var("COMMIT_INFO_PATH").expect("COMMIT_INFO_PATH not found");
-        println!("commit_info_path: {}", commit_info_path);
         let input = File::open(commit_info_path).expect("Unable to open file");
         let reader = BufReader::new(input);
 

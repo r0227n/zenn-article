@@ -10,7 +10,7 @@ published: true
 
 (`flutter run`だとローカルホスト上に立っているため、
 
-├── test
+
 │   └── widget_test.dart
 └── web
     ├── favicon.png
