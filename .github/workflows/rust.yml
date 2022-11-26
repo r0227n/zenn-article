@@ -51,6 +51,10 @@ jobs:
           git status
 
           echo $modified
+
+          git add -u
+          echo 'check'
+          git status
           git add ../index.json
           git commit -m "Update index.json"
           git push
