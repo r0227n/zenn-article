@@ -46,6 +46,8 @@ jobs:
 
           git status
           git ls-files --modified | grep -x "../index.json" | xargs git add
+          echo 'xargs'
+          git status
           modified=`git ls-files -m | grep -x "../index.json"` || true
 
           git status
