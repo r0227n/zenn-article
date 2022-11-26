@@ -41,6 +41,9 @@ jobs:
           WORKSPACE: ${{ github.workspace }}
       - name: Test Update
         run: |
+          git config --global user.name ${{ github.event.head_commit.committer.username }}
+          git config --global user.email ${{ github.event.head_commit.committer.email }}
+
           git status
           git ls-files --modified | grep -x "../index.json" | xargs git add
           modified=`git ls-files -m | grep -x "../index.json"` || true

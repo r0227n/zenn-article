@@ -11,7 +11,7 @@ Flutterでモバイル以外のアプリ開発をしたいと考えている[Ryo
 GitHub Pages初学者の私がFlutter Webで作ったアプリをデプロイする方法をメモとして残しておきます。
 
 
-(`flutter run`だとローカルホスト上に立っているため、`http://localhost:49535/#/`になります。)
+(`flutter run`だとローカルホスト上に立っているため、
 
 ### ビルド
 ```bash
