@@ -32,9 +32,3 @@ flutter run
 flutter build web 
 ```
 プラットフォームをWebに指定し、ビルドします。そうすると
-```
-.
-├── README.md
-├── analysis_options.yaml
-├── build
-

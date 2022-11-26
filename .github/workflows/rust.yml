@@ -39,12 +39,12 @@ jobs:
           COMMIT_INFO_PATH: ${{ github.workspace }}/commit.txt
           TIMESTAMP: ${{ github.event.head_commit.timestamp }}
           WORKSPACE: ${{ github.workspace }}
-      - name: Test Update
+      - name: Push to index.json
         run: |
           git config --global user.name ${{ github.event.head_commit.committer.username }}
           git config --global user.email ${{ github.event.head_commit.committer.email }}
 
-          git status | grep -i index.json$
+          modified=`git status | grep -i index.json$` || true
 
           if [ -n "$modified" ]; then
             git commit -m "Update index.json"
