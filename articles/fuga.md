@@ -11,10 +11,7 @@ published: true
 (`flutter run`だとローカルホスト上に立っているため、
 
 
-│   └── widget_test.dart
-└── web
-    ├── favicon.png
-    ├── icons
+
     ├── index.html
     └── manifest.json
 ```
