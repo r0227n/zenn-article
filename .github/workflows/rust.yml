@@ -28,15 +28,23 @@ jobs:
         run: echo '${{ toJSON(github) }}'
       - name: Get Markdown files for this push
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
-        run: git show ${{ github.event.head_commit.id }} --format= --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true
-    steps:          
-      - name: Build
+        run: git show ${{ github.event.head_commit.id }} --format= --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true    
+      - name: Rust Project Build
         run: cargo build --verbose
-      - name: Run tests
+      - name: Run Rust Project tests
         run: cargo test --verbose
-      - name: Run rust project
+      - name: Run Rust Project
         run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
         env:
           COMMIT_INFO_PATH: ${{ github.workspace }}/commit.txt
           TIMESTAMP: ${{ github.event.head_commit.timestamp }}
           WORKSPACE: ${{ github.workspace }}
+      - name: Test Update
+        run: |
+          modified=`git ls-files -m | grep -x '${{ github.workspace }}/index.json'` || true
+
+          if [ -n "$modified" ]; then
+            git add -u
+            git commit -m "Update index.json"
+            git push
+          fi

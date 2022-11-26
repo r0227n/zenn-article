@@ -89,9 +89,9 @@ fn main() {
     let commit_info = CommitInfo::env().unwrap();
  
     for file in commit_info.files {
-        let path = commit_info.current_directory.clone() + "/" + &file.path;
+        let path: String = commit_info.current_directory.clone() + "/" + &file.path;
         let zenn = Zenn::from_file(path).unwrap();
-        let index = Index::read();
+        let index = Index::read(commit_info.current_directory.clone());
 
         let hoge = Index::write(index,zenn, commit_info.current_directory.clone());
         println!("{:?}",hoge);
@@ -109,8 +109,8 @@ struct Index {
 impl Index {
     const FILE_NAME: &'static str = "index.json";
 
-    fn read() -> Index {
-        if let Ok(file) = File::open(Self::FILE_NAME) {
+    fn read(read_directory: String) -> Index {
+        if let Ok(file) = File::open(read_directory + Self::FILE_NAME) {
             let reader = BufReader::new(file);
             if let Ok(index) = serde_json::from_reader(reader) {
                 return index;
