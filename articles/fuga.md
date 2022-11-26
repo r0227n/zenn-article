@@ -12,8 +12,7 @@ published: true
 
 
 
-    ├── index.html
-    └── manifest.json
+
 ```
 
 **build**ディレクトリに`web`ディレクトリが作成されます。この中にWebプラットフォームようにビルドされたアプリが入っています。

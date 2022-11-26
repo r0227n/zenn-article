@@ -198,7 +198,7 @@ impl Zenn {
         body.insert(String::from("update_at"), commit.date);
         body.insert(String::from("path"), path.clone());
 
-        let input = File::open(commit.current_directory + &path)?;
+        let input = File::open(commit.current_directory + "/" + &path)?;
         let buffered = BufReader::new(input);
         let mut mode = SplitMode::Ready;
 
