@@ -93,7 +93,7 @@ fn main() {
         let zenn = Zenn::from_file(path).unwrap();
         let index = Index::read();
 
-        let hoge = Index::write(index,zenn);
+        let hoge = Index::write(index,zenn, commit_info.current_directory.clone());
         println!("{:?}",hoge);
     }
 }
@@ -124,7 +124,7 @@ impl Index {
         };
     }
 
-    fn write(mut self, article: Zenn) -> Result<File, Error> {
+    fn write(mut self, article: Zenn, write_directory: String) -> Result<File, Error> {
         let contains_updated = self.articles.iter().any(|x| x.path == article.path);
         let contains_path = self.articles.iter().any(|x| x.path == article.path);
         if contains_updated && contains_path {
@@ -137,7 +137,7 @@ impl Index {
 
         let json = serde_json::to_string_pretty(&self)?;
 
-        let mut file = File::create(Self::FILE_NAME)?;
+        let mut file = File::create(write_directory + Self::FILE_NAME)?;
         file.write_all(json.as_bytes())?;
         Ok(file)
     }
