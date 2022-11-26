@@ -48,8 +48,10 @@ jobs:
           git ls-files --modified | grep -x "../index.json" | xargs git add
           modified=`git ls-files -m | grep -x "../index.json"` || true
 
+          git status
+
           echo $modified
-          git add ${{ github.workspace }}/index.json
+          git add ../index.json
           git commit -m "Update index.json"
           git push
 
