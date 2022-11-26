@@ -10,15 +10,6 @@ published: true
 
 (`flutter run`だとローカルホスト上に立っているため、
 
-├── build
-│   ├── c075001b96339384a97db4862b8ab8db.cache.dill.track.dill
-│   ├── flutter_assets
-│   └── web
-├── flutter_web.iml
-├── lib
-│   └── main.dart
-├── pubspec.lock
-├── pubspec.yaml
 ├── test
 │   └── widget_test.dart
 └── web

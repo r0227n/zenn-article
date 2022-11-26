@@ -196,7 +196,7 @@ impl Zenn {
         const SPLITE: &str = "---";
 
         let mut body = HashMap::new();
-        body.insert(String::from("update_at"), String::from(commit.date));
+        body.insert(String::from("update_at"), commit.date);
         body.insert(String::from("path"), path.clone());
 
         let input = File::open(commit.current_directory + &path)?;
