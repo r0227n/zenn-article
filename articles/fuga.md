@@ -97,8 +97,3 @@ GitHub Pagesでは`root`ディレクトリもしくは**docs**ディレクトリ
 
 ![](https://storage.googleapis.com/zenn-user-upload/b2fbe373e7af-20221015.png)
 (GitHub Pagesにホスティングされているため、URLは`https://<GitHubのユーザー名>.github.io/<リポジトリ名>/#/`になっていますね)
-
-
-# 最後に
-今回はGitHub上のGUIでデプロイ作業をしていましたが、`Actions`を使って自動デプロイをする方法もあります。  
-`Actions`の使い方を理解次第、自動デプロイの方法＆解説記事を書いてみたいと思います。
