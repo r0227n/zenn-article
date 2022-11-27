@@ -44,7 +44,7 @@ jobs:
           git config --global user.name ${{ github.event.head_commit.committer.username }}
           git config --global user.email ${{ github.event.head_commit.committer.email }}
 
-          # index.jsonの相対パスを取得する
+          # index.jsonの相対パスを取得
           modified=`git status | grep -i index.json$ | sed 's/modified://g'` || true
 
           if [ -n "$modified" ]; then
