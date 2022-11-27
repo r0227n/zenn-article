@@ -128,7 +128,7 @@ impl Index {
             return Err(Error::new(std::io::ErrorKind::Other, "already exists"));
         }
 
-        self.update_at = String::from("2021-01-01");
+        self.update_at = env::var("TIMESTAMP").expect("COMMIT_INFO_PATH not found");
         self.articles.push(article);
         self.total = self.articles.len() as i32;
 

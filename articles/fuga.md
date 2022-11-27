@@ -17,10 +17,6 @@ published: true
 
 **build**ディレクトリに`web`ディレクトリが作成されます。この中にWebプラットフォームようにビルドされたアプリが入っています。
 
-
-### baseタグの修正
-build -> web -> index.htmlのbaseタグを修正します。
-```html:index.html
 <!-- before -->
 <base href="/">
 
