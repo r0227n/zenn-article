@@ -3,7 +3,7 @@ name: Rust
 on:
   pull_request:
     branches: [ "feature/actions" ]
-
+    
 defaults:
   run:
     shell: bash
@@ -17,7 +17,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    environment: GITHUB_ACCOUNT
     steps:
       - uses: actions/checkout@v3
         with:
@@ -26,7 +26,7 @@ jobs:
         run: echo '${{ toJSON(github) }}'
       - name: Get Markdown files for this push
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
-        run: git show ${{ github.event.head_commit.id }} --format= --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true    
+        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true    
       - name: Rust Project Build
         run: cargo build --verbose
       - name: Run Rust Project tests
@@ -39,8 +39,10 @@ jobs:
           WORKSPACE: ${{ github.workspace }}
       - name: Push to index.json
         run: |
-          git config --global user.name ${{ github.event.head_commit.committer.username }}
-          git config --global user.email ${{ github.event.head_commit.committer.email }}
+          git config --global user.name ${{ secrets.GIT_USERNAME }}
+          git config --global user.email ${{ secrets.GIT_EMAIL }}
+          git status
+          git diff HEAD^..HEAD --name-only
 
           # index.jsonの相対パスを取得
           modified=`git status | grep -i index.json$ | sed 's/modified://g'` || true
@@ -48,7 +50,8 @@ jobs:
           if [ -n "$modified" ]; then
             git add $modified
             git commit -m "Update index.json"
-            git push
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
           else
             echo "No changes to Markdown files"
           fi
+        
