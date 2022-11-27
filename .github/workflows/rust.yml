@@ -3,7 +3,7 @@ name: Rust
 on:
   pull_request:
     branches: [ "feature/actions" ]
-GITHUB_ACCOUNT
+    
 defaults:
   run:
     shell: bash
