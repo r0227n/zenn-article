@@ -20,10 +20,7 @@ published: true
 <!-- before -->
 
 
-## GitHub 上での作業編
-### GitHub Pagesの設定
-プロジェクトを管理しているリポジトリを開きます。
-![](https://storage.googleapis.com/zenn-user-upload/e385deb74d59-20221015.png)
+## GitHleapis.com/zenn-user-upload/e385deb74d59-20221015.png)
 1. `Settings`から`Pages`を選択します。
 2. `Build and deployment`の内容を変更
    1. `Source`を`Deploy fron a branch`に変更
