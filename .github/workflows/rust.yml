@@ -3,7 +3,7 @@ name: Rust
 on:
   pull_request:
     branches: [ "feature/actions" ]
-
+GITHUB_ACCOUNT
 defaults:
   run:
     shell: bash
@@ -39,8 +39,8 @@ jobs:
           WORKSPACE: ${{ github.workspace }}
       - name: Push to index.json
         run: |
-          git config --global user.name ${{ github.event.head_commit.committer.username }}
-          git config --global user.email ${{ github.event.head_commit.committer.email }}
+          git config --global user.name ${{ secrets.GIT_USERNAME }}
+          git config --global user.email ${{ secrets.GIT_EMAIL }}
 
           # index.jsonの相対パスを取得
           modified=`git status | grep -i index.json$ | sed 's/modified://g'` || true
@@ -52,3 +52,5 @@ jobs:
           else
             echo "No changes to Markdown files"
           fi
+        environment:
+          
