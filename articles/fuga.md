@@ -20,11 +20,6 @@ published: true
 <!-- before -->
 .com/html/base.htm)の解説は省きますが、この修正をしないと`404 NotFound`になるので注意してください。
 
-### push
-```bash
-// docsディレクトリにビルドファイルを移動
-mv build/web ../docs
-
 git add .
 <以下省略>
 ```
