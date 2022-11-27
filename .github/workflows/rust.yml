@@ -17,7 +17,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    environment: GITHUB_ACCOUNT
     steps:
       - uses: actions/checkout@v3
         with:
@@ -52,3 +52,4 @@ jobs:
           else
             echo "No changes to Markdown files"
           fi
+        
