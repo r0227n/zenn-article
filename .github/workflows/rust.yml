@@ -26,7 +26,7 @@ jobs:
         run: echo '${{ toJSON(github) }}'
       - name: Get Markdown files for this push
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
-        run: git diff HEAD^..HEAD --name-only | grep -i .md$ > ${{ github.workspace }}/commit.txt || true    
+        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true    
       - name: Rust Project Build
         run: cargo build --verbose
       - name: Run Rust Project tests
