@@ -88,9 +88,9 @@ fn main() {
 
     for file in commit_info.files {
         let zenn = Zenn::new(CommitInfo::env().expect("Failed env"), file.path).expect("Zenn::new failed");
-        let index = Index::read(env::var("WORKSPACE").expect("WORKSPACE not found"));
+        let index = Index::read();
 
-        let hoge = Index::write(index,zenn, env::var("WORKSPACE").expect("WORKSPACE not found"));
+        let hoge = Index::write(index,zenn);
         println!("{:?}",hoge);
     }
 }
@@ -104,10 +104,8 @@ struct Index {
 }
 
 impl Index {
-    const FILE_NAME: &'static str = "index.json";
-
-    fn read(read_directory: String) -> Index {
-        if let Ok(file) = File::open(read_directory + "/" + Self::FILE_NAME) {
+    fn read() -> Index {
+        if let Ok(file) = File::open(Self::to_env_path()) {
             let reader = BufReader::new(file);
             if let Ok(index) = serde_json::from_reader(reader) {
                 return index;
@@ -121,7 +119,7 @@ impl Index {
         };
     }
 
-    fn write(mut self, article: Zenn, write_directory: String) -> Result<File, Error> {
+    fn write(mut self, article: Zenn) -> Result<File, Error> {
         let contains_updated = self.articles.iter().any(|x| x.path == article.path);
         let contains_path = self.articles.iter().any(|x| x.path == article.path);
         if contains_updated && contains_path {
@@ -134,9 +132,15 @@ impl Index {
 
         let json = serde_json::to_string_pretty(&self)?;
 
-        let mut file = File::create(write_directory + "/" + Self::FILE_NAME)?;
+        let mut file = File::create(Self::to_env_path())?;
         file.write_all(json.as_bytes())?;
         Ok(file)
+    }
+
+    fn to_env_path() -> String {
+        const FILE_NAME: &'static str = "index.json";
+
+        env::var("WORKSPACE").expect("WORKSPACE not found") + "/" + FILE_NAME
     }
 }
 

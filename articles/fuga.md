@@ -18,12 +18,7 @@ published: true
 **build**ディレクトリに`web`ディレクトリが作成されます。この中にWebプラットフォームようにビルドされたアプリが入っています。
 
 <!-- before -->
-<base href="/">
-
-<!-- after -->
-<base href="/<リポジトリ名>/">
-```
-[baseタグ](https://www.tohoho-web.com/html/base.htm)の解説は省きますが、この修正をしないと`404 NotFound`になるので注意してください。
+.com/html/base.htm)の解説は省きますが、この修正をしないと`404 NotFound`になるので注意してください。
 
 ### push
 ```bash
