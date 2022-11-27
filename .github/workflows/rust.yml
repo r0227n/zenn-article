@@ -52,5 +52,3 @@ jobs:
           else
             echo "No changes to Markdown files"
           fi
-        environment:
-          
