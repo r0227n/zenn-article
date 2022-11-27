@@ -42,6 +42,7 @@ jobs:
           git config --global user.name ${{ secrets.GIT_USERNAME }}
           git config --global user.email ${{ secrets.GIT_EMAIL }}
           git status
+          git diff HEAD^..HEAD --name-only
 
           # index.jsonの相対パスを取得
           modified=`git status | grep -i index.json$ | sed 's/modified://g'` || true
