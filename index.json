@@ -1,0 +1,19 @@
+{
+  "total": 1,
+  "update_at": "2022-11-27T11:32:54+09:00",
+  "articles": [
+    {
+      "title": "Flutter WebをGitHub Pagesにデプロイする方法",
+      "emoji": "🥳",
+      "type": "tech",
+      "topics": [
+        "Flutter",
+        "GitHubPages",
+        "GitHub"
+      ],
+      "published": true,
+      "updated_at": "2022-11-27T11:32:54+09:00",
+      "path": "articles/hoge.md"
+    }
+  ]
+}
