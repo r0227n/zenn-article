@@ -18,7 +18,7 @@ published: true
 **build**ディレクトリに`web`ディレクトリが作成されます。この中にWebプラットフォームようにビルドされたアプリが入っています。
 
 <!-- before -->
-.com/html/base.ht
+
 
 ## GitHub 上での作業編
 ### GitHub Pagesの設定
