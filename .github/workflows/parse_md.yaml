@@ -28,20 +28,20 @@ jobs:
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
         run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || touch ${{ github.workspace }}/commit.txt    
       - name: Build Rust
-        if: cat sample.txt | wc -w > 0
+        if: cat ${{ github.workspace }}/commit.txt | wc -w > 0
         run: cargo build --verbose
       - name: Tests Rust
-        if: cat sample.txt | wc -w > 0
+        if: ${{ github.workspace }}/commit.txt | wc -w > 0
         run: cargo test --verbose
       - name: Run Rust
-        if: cat sample.txt | wc -w > 0
+        if: cat ${{ github.workspace }}/commit.txt | wc -w > 0
         run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
         env:
           COMMIT_INFO_PATH: ${{ github.workspace }}/commit.txt
           TIMESTAMP: ${{ github.event.pull_request.updated_at }}
           WORKSPACE: ${{ github.workspace }}
       - name: Push to index.json
-        if: cat sample.txt | wc -w > 0
+        if: cat ${{ github.workspace }}/commit.txt | wc -w > 0
         run: |
           git config --global user.name ${{ secrets.GIT_USERNAME }}
           git config --global user.email ${{ secrets.GIT_EMAIL }}
