@@ -26,7 +26,7 @@ jobs:
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
         run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || touch ${{ github.workspace }}/commit.txt    
       - name: Build Rust
-        if: test $(cat ${{ github.workspace }}/commit.txt | wc -w) -gt 0
+        if: test $(cat ${{ github.workspace }}/commit.txt | wc -w) -gt 0 == true
         run: cargo build --verbose
       - name: Tests Rust
         if: test $(cat ${{ github.workspace }}/commit.txt | wc -w) -gt 0
