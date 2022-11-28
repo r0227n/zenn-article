@@ -197,12 +197,13 @@ impl Zenn {
 
     fn new(commit: CommitInfo, path: String) -> Result<Zenn, Error> {
         const SPLITE: &str = "---";
+        const ARTICLE_DIRECTORY: &str = "articles/";
 
         let mut body = HashMap::new();
         body.insert(String::from("update_at"), commit.date);
         body.insert(String::from("path"), path.clone());
 
-        let input = File::open(commit.current_directory + "/" + &path)?;
+        let input = File::open(commit.current_directory + "/" + ARTICLE_DIRECTORY + &path)?;
         let buffered = BufReader::new(input);
         let mut mode = SplitMode::Ready;
 
