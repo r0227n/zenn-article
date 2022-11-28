@@ -1,0 +1,53 @@
+name: Parsing an article
+
+on:
+  pull_request:
+    branches: [ "develop" ]
+    
+defaults:
+  run:
+    shell: bash
+    working-directory: parse_md
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_PROJECT_NAME: parse_md
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    environment: GITHUB_ACCOUNT
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get Markdown files for this PR
+        # 拡張子が.mdのファイルを取得し、commit.txtに出力
+        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true    
+      - name: Build Rust
+        run: cargo build --verbose
+      - name: Tests Rust
+        run: cargo test --verbose
+      - name: Run Rust
+        run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
+        env:
+          COMMIT_INFO_PATH: ${{ github.workspace }}/commit.txt
+          TIMESTAMP: ${{ github.event.head_commit.timestamp }}
+          WORKSPACE: ${{ github.workspace }}
+      - name: Push to index.json
+        run: |
+          git config --global user.name ${{ secrets.GIT_USERNAME }}
+          git config --global user.email ${{ secrets.GIT_EMAIL }}
+
+          # index.jsonの相対パスを取得
+          modified=`git status | grep -i index.json$ | sed 's/modified://g'` || true
+
+          if [ -n "$modified" ]; then
+            git add $modified
+            git commit -m "index.json updated with run_id: ${{ github.run_id }}"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          else
+            echo "No changes to Markdown files"
+          fi
+        
