@@ -1,7 +1,6 @@
 name: Parsing an article
 
 on:
-  workflow_dispatch:
   pull_request:
     branches: [ "develop" ]
     
@@ -25,7 +24,7 @@ jobs:
           fetch-depth: 0
       - name: Get Markdown files for this PR
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
-        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || touch "${{ github.workspace }}/commit.txt"    
+        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true    
       - name: Build Rust
         run: cargo build --verbose
       - name: Tests Rust
@@ -34,7 +33,7 @@ jobs:
         run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
         env:
           COMMIT_INFO_PATH: ${{ github.workspace }}/commit.txt
-          TIMESTAMP: ${{ github.event.pull_request.updated_at }}
+          TIMESTAMP: ${{ github.event.head_commit.timestamp }}
           WORKSPACE: ${{ github.workspace }}
       - name: Push to index.json
         run: |
