@@ -25,26 +25,18 @@ jobs:
           fetch-depth: 0
       - name: Get Markdown files for this PR
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
-        run: |
-          git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || touch "${{ github.workspace }}/commit.txt"    
-          echo 'test start'
-          cat ${{ github.workspace }}/commit.txt
-          echo 'fin'
+        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || touch "${{ github.workspace }}/commit.txt"    
       - name: Build Rust
-        if: test $(cat ${{ github.workspace }}/commit.txt | wc -w) -gt 0 == 1
         run: cargo build --verbose
       - name: Tests Rust
-        if: test $(cat ${{ github.workspace }}/commit.txt | wc -w) -gt 0
         run: cargo test --verbose
       - name: Run Rust
-        if: test $(cat ${{ github.workspace }}/commit.txt | wc -w) -gt 0
         run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
         env:
           COMMIT_INFO_PATH: ${{ github.workspace }}/commit.txt
           TIMESTAMP: ${{ github.event.pull_request.updated_at }}
           WORKSPACE: ${{ github.workspace }}
       - name: Push to index.json
-        if: test $(cat ${{ github.workspace }}/commit.txt | wc -w) -gt 0
         run: |
           git config --global user.name ${{ secrets.GIT_USERNAME }}
           git config --global user.email ${{ secrets.GIT_EMAIL }}
