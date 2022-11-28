@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
       - name: Get Markdown files for this PR
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
-        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true    
+        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || touch ${{ github.workspace }}/commit.txt    
       - name: Build Rust
         run: cargo build --verbose
       - name: Tests Rust
