@@ -35,7 +35,7 @@ jobs:
         run: ./target/debug/${{ env.RUST_PROJECT_NAME }}
         env:
           COMMIT_INFO_PATH: ${{ github.workspace }}/commit.txt
-          TIMESTAMP: ${{ github.event.head_commit.timestamp }}
+          TIMESTAMP: ${{ github.event.pull_request.updated_at }}
           WORKSPACE: ${{ github.workspace }}
       - name: Push to index.json
         run: |
