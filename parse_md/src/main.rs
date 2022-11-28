@@ -87,6 +87,32 @@ fn main() {
     let commit_info = CommitInfo::env().unwrap();
 
     for file in commit_info.files {
+        match file.status {
+            CommitStatus::M => {
+                println!("Modified: {}", file.path);
+            },
+            CommitStatus::T => {
+                println!("File type changed: {}", file.path);
+            },
+            CommitStatus::A => {
+                println!("Added: {}", file.path);
+            },
+            CommitStatus::D => {
+                println!("Deleted: {}", file.path);
+                println!("Skipping...");
+                continue;
+            },
+            CommitStatus::R => {
+                println!("Renamed: {}", file.path);
+            },
+            CommitStatus::C => {
+                println!("Copied: {}", file.path);
+            },
+            CommitStatus::U => {
+                println!("Updated but unmerged: {}", file.path);
+            },
+        }
+
         let zenn = Zenn::new(CommitInfo::env().expect("Failed env"), file.path).expect("Zenn::new failed");
         let index = Index::read();
 
@@ -197,13 +223,12 @@ impl Zenn {
 
     fn new(commit: CommitInfo, path: String) -> Result<Zenn, Error> {
         const SPLITE: &str = "---";
-        const ARTICLE_DIRECTORY: &str = "articles/";
 
         let mut body = HashMap::new();
         body.insert(String::from("update_at"), commit.date);
         body.insert(String::from("path"), path.clone());
 
-        let input = File::open(commit.current_directory + "/" + ARTICLE_DIRECTORY + &path)?;
+        let input = File::open(commit.current_directory + "/" + &path)?;
         let buffered = BufReader::new(input);
         let mut mode = SplitMode::Ready;
 
