@@ -10,13 +10,17 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.3.2
-  riverpod_generator: ^2.1.4
+  riverpod_annotation: ^2.0.2
   riverpod_lint: ^1.1.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   custom_lint:
+  # a tool for running code generators
+  build_runner:
+  # the code generator
+  riverpod_generator:
 
 flutter:
   uses-material-design: true
