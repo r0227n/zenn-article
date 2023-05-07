@@ -1,0 +1,26 @@
+name: riverpod_asyncnotifier_updatemethod
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0-122.0.dev <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.3.2
+  riverpod_annotation: ^2.0.2
+  riverpod_lint: ^1.1.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  custom_lint:
+  # a tool for running code generators
+  build_runner:
+  # the code generator
+  riverpod_generator:
+
+flutter:
+  uses-material-design: true
