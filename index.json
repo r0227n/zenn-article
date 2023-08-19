@@ -1,5 +1,5 @@
 {
-  "total": 1,
+  "total": 2,
   "update_at": "",
   "articles": [
     {
@@ -12,6 +12,19 @@
       "published": true,
       "updated_at": "",
       "path": "articles/pac_alarm_introduce.md"
+    },
+    {
+      "title": "firebase_analytics「Missing google_app_id.」エラー解決方法",
+      "emoji": "🔥",
+      "type": "アイデア",
+      "topics": [
+        "Flutter",
+        "Firebase",
+        "Asndroid"
+      ],
+      "published": true,
+      "updated_at": "",
+      "path": "articles/flutterfire_analytics_android_setting_tip.md"
     }
   ]
 }
