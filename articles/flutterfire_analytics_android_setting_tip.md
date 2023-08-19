@@ -2,7 +2,7 @@
 title: "firebase_analytics「Missing google_app_id.」エラー解決方法"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [Flutter, Firebase, Asndroid]
+topics: [Flutter, Firebase, Android]
 published: true
 ---
 
