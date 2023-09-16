@@ -94,18 +94,13 @@ class _PinchZoomState extends State<PinchZoom> with SingleTickerProviderStateMix
             widget.onDoubleTap!();
           }
 
-          if (_doubleTapDetails == null) {
-            return;
+          if (_doubleTapDetails?.localPosition != null) {
+            _controller.transform(
+              offset: _doubleTapDetails!.localPosition,
+              scale: widget.scale,
+              curve: widget.curve,
+            );
           }
-          _controller.scenePosition = _controller.toScene(_doubleTapDetails!.localPosition);
-
-          _controller.animationState = Matrix4Tween(
-            begin: _controller.value,
-            end: _controller.animationScale(widget.scale),
-          ).animate(
-            CurveTween(curve: widget.curve).animate(_controller.animationController),
-          );
-          _controller.animationController.forward(from: 0);
         },
         child: InteractiveViewer(
           transformationController: _controller,
@@ -147,6 +142,29 @@ class PinchZoomController extends TransformationController {
       animationState = null;
       animationController.reset();
     }
+  }
+
+  /// Transform [PinchZoomController] values.
+  /// [offset] is the position of the user's finger on the screen.
+  /// [scale] is the scale of the user's finger on the screen.
+  /// [curve] is the animation easing curve.
+  /// [fromAnimation] is the animation start value.
+  TickerFuture transform({
+    required Offset offset,
+    required double scale,
+    required Curve curve,
+    double fromAnimation = 0,
+  }) {
+    scenePosition = toScene(offset);
+
+    animationState = Matrix4Tween(
+      begin: value,
+      end: animationScale(scale),
+    ).animate(
+      CurveTween(curve: curve).animate(animationController),
+    );
+
+    return animationController.forward(from: fromAnimation);
   }
 
   /// [PinhZoom]'s animation scale
