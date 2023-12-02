@@ -1,5 +1,5 @@
 {
-  "total": 2,
+  "total": 3,
   "update_at": "",
   "articles": [
     {
@@ -25,6 +25,17 @@
       "published": true,
       "updated_at": "",
       "path": "articles/flutterfire_analytics_android_setting_tip.md"
+    },
+    {
+      "title": "Nuxt3のディレクトリ構成 一覧",
+      "emoji": "🗒️",
+      "type": "アイデア",
+      "topics": [
+        "Nuxt3"
+      ],
+      "published": true,
+      "updated_at": "",
+      "path": "articles/nuxt3_directory_structure_memo.md"
     }
   ]
 }
