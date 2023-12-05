@@ -3,7 +3,7 @@ title: "【Flutter】AndroidのPush通知使用許諾を表示する方法"
 emoji: "📢"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter, Android]
-published: false
+published: true
 ---
 
 どうもこんにちは、[Ryo24](https://twitter.com/r0227n_)です。
