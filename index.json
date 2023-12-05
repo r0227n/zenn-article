@@ -1,5 +1,5 @@
 {
-  "total": 3,
+  "total": 4,
   "update_at": "",
   "articles": [
     {
@@ -36,6 +36,18 @@
       "published": true,
       "updated_at": "",
       "path": "articles/nuxt3_directory_structure_memo.md"
+    },
+    {
+      "title": "【Flutter】AndroidのPush通知使用許諾を表示する方法",
+      "emoji": "📢",
+      "type": "アイデア",
+      "topics": [
+        "Flutter",
+        "Android"
+      ],
+      "published": true,
+      "updated_at": "",
+      "path": "articles/flutter_android_notification_permission.md"
     }
   ]
 }
