@@ -1,5 +1,5 @@
 {
-  "total": 4,
+  "total": 5,
   "update_at": "",
   "articles": [
     {
@@ -48,6 +48,18 @@
       "published": true,
       "updated_at": "",
       "path": "articles/flutter_android_notification_permission.md"
+    },
+    {
+      "title": "[Google Play Console] サポートデバイスの設定方法",
+      "emoji": "📱",
+      "type": "アイデア",
+      "topics": [
+        "android",
+        "googleplay"
+      ],
+      "published": true,
+      "updated_at": "",
+      "path": "articles/edit_android_support_device.md"
     }
   ]
 }
