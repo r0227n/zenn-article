@@ -24,7 +24,7 @@ typedef Hoge = Map<String, dynamic>;
 abstract class Fuga with _$Fuga {
   const factory Fuga({
     required Hoge json,
-  }) = Fuga;
+  }) = _Fuga;
 }
 ```
 
@@ -58,7 +58,7 @@ Fuga get json;
 abstract class Fuga with _$Fuga {
   const factory Fuga({
     required Map<String, dynamic> json,
-  }) = Fuga;
+  }) = _Fuga;
 }
 ```
 
