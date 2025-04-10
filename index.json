@@ -1,5 +1,5 @@
 {
-  "total": 7,
+  "total": 8,
   "update_at": "",
   "articles": [
     {
@@ -87,6 +87,18 @@
       "published": true,
       "updated_at": "",
       "path": "articles/flutter_android_adaptive_icon.md"
+    },
+    {
+      "title": "freezedの名前付き引数の型定義は要注意",
+      "emoji": "🧊",
+      "type": "アイデア",
+      "topics": [
+        "flutter",
+        "dart"
+      ],
+      "published": true,
+      "updated_at": "",
+      "path": "articles/freezed-tips-named-parameters.md"
     }
   ]
 }
