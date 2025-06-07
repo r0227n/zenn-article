@@ -93,7 +93,7 @@ throw FormatException('$this: $char is not a number');
 
 ## URI処理への応用
 
-### URL路径での全角数字検出
+### URLパスでの全角数字検出
 
 ```dart
 extension ExtUri on Uri {
