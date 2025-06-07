@@ -1,5 +1,5 @@
 {
-  "total": 8,
+  "total": 9,
   "update_at": "",
   "articles": [
     {
@@ -99,6 +99,17 @@
       "published": true,
       "updated_at": "",
       "path": "articles/freezed-tips-named-parameters.md"
+    },
+    {
+      "title": "Dartで全角数字を半角数字に変換する方法",
+      "emoji": "🔢",
+      "type": "アイデア",
+      "topics": [
+        "dart"
+      ],
+      "published": true,
+      "updated_at": "",
+      "path": "articles/dart_fullwidth_to_halfwidth_conversion.md"
     }
   ]
 }
