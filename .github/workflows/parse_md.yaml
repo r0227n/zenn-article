@@ -3,7 +3,7 @@ name: Parsing an article
 on:
   pull_request:
     branches: [ "develop" ]
-    
+
 defaults:
   run:
     shell: bash
@@ -15,7 +15,6 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     environment: GITHUB_ACCOUNT
     steps:
@@ -24,7 +23,7 @@ jobs:
           fetch-depth: 0
       - name: Get Markdown files for this PR
         # 拡張子が.mdのファイルを取得し、commit.txtに出力
-        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true    
+        run: git diff HEAD^..HEAD --name-status | grep -i .md$ > ${{ github.workspace }}/commit.txt || true
       - name: Build Rust
         run: cargo build --verbose
       - name: Tests Rust
@@ -50,4 +49,3 @@ jobs:
           else
             echo "No changes to Markdown files"
           fi
-        

@@ -16,8 +16,8 @@ published: true
 - firebase_core: 2.15.0
 - firebase_analytics: 10.4.4
 
-
 # はじめに
+
 FlutterFireでFirebaseAnalytics導入時、Androidの環境構築でハマったのでメモしておきます。
 `flutterfire configure` で環境構築を行うとiOSは問題なく動作するのですが、Androidで以下のエラーが発生します。
 
@@ -29,11 +29,13 @@ E/FA      (17383): Missing google_app_id. Firebase Analytics disabled. See https
 ※ ログだと「アプリIDが間違っている」と表示されていますが、IDは正しいです。
 
 # 原因
+
 `flutterfire`で自動生成される`build.gradle`の設定不備が原因です。
 エラーログで表示されていたドキュメントに準拠し、`build.gradle`を修正したら直ります。
 https://firebase.google.com/docs/android/setup#groovy_1
 
 ## android/build.gradle
+
 ```diff gradle build.gradle
 dependencies {
     ...
@@ -44,6 +46,7 @@ dependencies {
 ```
 
 ## android/app/build.gradle
+
 ```diff gradle app/build.gradle
 plugins {
     id "com.android.application"
@@ -74,6 +77,6 @@ dependencies {
 ```
 
 # まとめ
- FlutterFireでFirebaseAnalyticsを導入する際、Android側は手動で`build.gradle`を修正する必要があります。ファイルの自動生成内容が古く中途半端に設定があり、初見だと原因があわからないため、 今後のアップデートで修正されることを期待したいです。
- 以上、ZOC(現: METAMUSE μ)の[family name](https://www.youtube.com/watch?v=IytBgF3UhP0&list=RD4n9Op9mRs84&index=3)を聴き、環境打破を目指す[@r0227n_](https://twitter.com/r0227n_)でした。
- 
+
+FlutterFireでFirebaseAnalyticsを導入する際、Android側は手動で`build.gradle`を修正する必要があります。ファイルの自動生成内容が古く中途半端に設定があり、初見だと原因があわからないため、 今後のアップデートで修正されることを期待したいです。
+以上、ZOC(現: METAMUSE μ)の[family name](https://www.youtube.com/watch?v=IytBgF3UhP0&list=RD4n9Op9mRs84&index=3)を聴き、環境打破を目指す[@r0227n_](https://twitter.com/r0227n_)でした。

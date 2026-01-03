@@ -75,7 +75,7 @@ warning: 'whisperkit': found 1 file(s) which are unhandled; explicitly declare t
 Building for debugging...
 [112/112] Applying whisperkit-cli
 Build complete! (11.02s)
-Error: Unable to load model: file:///Users/<username>/dev/whisperkit/Models/whisperkit-coreml/openai_whisper-large-v3/MelSpectrogram.mlmodelc/. Compile the model with Xcode or `MLModel.compileModel(at:)`. 
+Error: Unable to load model: file:///Users/<username>/dev/whisperkit/Models/whisperkit-coreml/openai_whisper-large-v3/MelSpectrogram.mlmodelc/. Compile the model with Xcode or `MLModel.compileModel(at:)`.
 ```
 
 :::
@@ -169,7 +169,6 @@ OPTIONS:
                           processing more than 1 audio file at the same time. 0
                           means unlimited (default: 0)
   -h, --help              Show help information.
-
 ```
 
 :::

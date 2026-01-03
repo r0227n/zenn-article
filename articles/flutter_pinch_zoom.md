@@ -5,13 +5,16 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Flutter]
 published: true
 ---
+
 ![](https://storage.googleapis.com/zenn-user-upload/ae795cb097aa-20230925.gif)
 [InteractiveViewer](https://api.flutter.dev/flutter/widgets/InteractiveViewer-class.html)はコンテンツを拡大縮小、スクロールできるWidgetです。
 標準ではパンでしかコンテンツを操作できないので、タップでも拡大縮小できるようにカスタマイズする方法をご紹介します。
 (画像アプリでよくある拡大縮小の操作を実装していきます！)
 
 # ロジックの解説
+
 拡大縮小やスクロールなどは[Matrix4](https://api.flutter.dev/flutter/vector_math/Matrix4-class.html)を使い
+
 - 行列の乗算
 - 逆行列の計算
 - ベクトルの変換
@@ -20,14 +23,18 @@ published: true
 (Flutterは行列関連のパッケージを標準で多く実装しており、開発者が直接行列を操作することは少ないです。)
 
 ## InteractiveViewerの行列操作の状態管理
+
 [TransformationController](https://api.flutter.dev/flutter/widgets/TransformationController-class.html)(`Matrix4`を`ValueNotifier`でラップしたクラス)でStateを管理しています。
 
 ## タップで拡大縮小する仕組み
+
 [GestureDetector](https://api.flutter.dev/flutter/widgets/GestureDetector-class.html)(ジェスチャー操作を検出するWidget)を使い、[Matrix4Tween](https://api.flutter.dev/flutter/widgets/Matrix4Tween-class.html)でタップ前後の`Matrix4`をを補完します。
 
 # 実装
+
 https://github.com/r0227n/zenn-article/blob/develop/samples/pinch_zoom/lib/pinch_zoom.dart
 :::details Widget
+
 ```dart
 class PinchZoom extends StatefulWidget {
   const PinchZoom({
@@ -140,8 +147,10 @@ class _PinchZoomState extends State<PinchZoom> with SingleTickerProviderStateMix
   }
 }
 ```
+
 :::
 :::details Controller
+
 ```dart
 class PinchZoomController extends TransformationController {
   PinchZoomController({
@@ -244,14 +253,19 @@ class PinchZoomController extends TransformationController {
   }
 }
 ```
+
 :::
+
 ## 状態管理
+
 `TransformationController`を継承した`PinchZoomController`を作成し、`Matrix4`の状態とアニメーションを管理します。
 
 ## タップで拡大縮小する仕組み
+
 現在地点と置換後地点の座標間を乗算し、Offsetオブジェクトを作成する[toScene](https://api.flutter.dev/flutter/widgets/TransformationController/toScene.html)を使い、タップした座標を`Matrix4`の座標に変換します。その後、[Matrix4Tween](https://api.flutter.dev/flutter/widgets/Matrix4Tween-class.html)を使い、タップ前後の`Matrix4`を補完しています。
 
 # まとめ
+
 今回は[InteractiveViewer](https://api.flutter.dev/flutter/widgets/InteractiveViewer-class.html)のサンプルを触った際、『タップで拡大縮小もできるのではないか？』と思い実装してみました。行列の計算やアニメーションが標準パッケージで幅広くサポートされており、予想以上に簡単に実装できました。
 FlutterはUIだけでなく、UX面での実装もサポートされていて、このフレームワークがさらに好きになりました。
 以上、[八木海莉](https://yagikairi.com/#/)の[さらば、私の星](https://www.youtube.com/watch?v=zHZk5WMz530)を聴きながら書いたRyo24でした。
