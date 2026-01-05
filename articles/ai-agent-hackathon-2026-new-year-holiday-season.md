@@ -1,7 +1,7 @@
 ---
 title: "2025年年末個人AIエージェントハッカソンで学んだ Claude Code ノウハウ"
 emoji: "🎙️"
-type: "tech" # tech: 技術記事 / idea: アイデア
+type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["claudecode", "ai", "Whisper", "vibecoding"]
 published: true
 ---
