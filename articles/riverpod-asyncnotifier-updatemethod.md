@@ -11,8 +11,10 @@ published: true
 https://github.com/rrousselGit/riverpod/issues/2205
 
 # AsyncNotifierとは
+
 [Riverpod](https://docs-v2.riverpod.dev/)(Flutterの状態管理ライブラリ)における、非同期処理を管理するための基底クラスです。
 `State`を[AsyncValue](https://pub.dev/documentation/riverpod/latest/riverpod/AsyncValue-class.html)でラップし、
+
 - [AsyncLoading()](https://pub.dev/documentation/riverpod/latest/riverpod/AsyncLoading-class.html)
 - [AsyncData()](https://pub.dev/documentation/riverpod/latest/riverpod/AsyncData-class.html)
 - [AsyncError()](https://pub.dev/documentation/riverpod/latest/riverpod/AsyncError-class.html)
@@ -20,7 +22,9 @@ https://github.com/rrousselGit/riverpod/issues/2205
 の3つの状態で`State`を管理します。
 
 ## AsyncValueとは
+
 AsyncValueは、
+
 - [AsyncLoading()](https://pub.dev/documentation/riverpod/latest/riverpod/AsyncLoading-class.html): 値がまだ利用可能でないことを示す「ロード中」の状態
 - [AsyncData()](https://pub.dev/documentation/riverpod/latest/riverpod/AsyncData-class.html): 値が正常に読み込まれたことを示す「完了」の状態
 - [AsyncError()](https://pub.dev/documentation/riverpod/latest/riverpod/AsyncError-class.html):エラーが発生したことを示す「エラー」の状態
@@ -30,10 +34,11 @@ AsyncValueは、
 詳しいことは以下の記事を参照してください。
 https://zenn.dev/tsuruo/articles/52f62fc78df6d5
 
-
 ## update methodとは
+
 `AsyncNotifier`で管理されている`State`を更新するためのメソッドです。
 このメソッドは、`AsyncValue`を更新及びエラーハンドリングを一括で宣言することができます。
+
 ```dart
 update((data) {
   state = const AsyncLoading();
@@ -45,6 +50,7 @@ update((data) {
 ```
 
 # update methodの正しい使い方
+
 ```dart
   /// ケースA: アンチパターン
   /// Stateが常時[AsyncLoading()]になるため、「非同期処理が永遠に続いている」状態になる
@@ -72,18 +78,20 @@ update((data) {
 上記3種類の実装例が考えられるが、**caseB**の実装方法が非同期の状態を管理する方法として最適である。
 
 ## caseA
+
 ![](https://storage.googleapis.com/zenn-user-upload/e9bf4a9a69bf-20230328.gif)
 
 `update`内での処理が反映されず、`State`は`AsyncLoading()`の状態で更新されない状態になります。
 
 ## caseB & caseC
-![](https://storage.googleapis.com/zenn-user-upload/81f8bec3dee0-20230328.gif)
 
+![](https://storage.googleapis.com/zenn-user-upload/81f8bec3dee0-20230328.gif)
 
 `update`内での処理が反映され、`State`に`AsyncData()`(もしくは`AsyncError()`)が代入され値が更新されます。
 caseCの場合、`AsyncLoading()`の状態を管理できないため不十分な実装になります。
 
 # Stateの更新方法使い分け
+
 ```dart
 /// [update method]を使ったケース
 update((data) {
@@ -101,6 +109,7 @@ state = AsyncValue.guard(() {
 ```
 
 `update method`は **「このAsyncNotifierで管理されている情報を更新しているぞ！」** と明示的に表現することができるため、`AsynNotifier`の`State`のみ変更するユースケースでは積極的に使いますが、
+
 - `別State`の更新
 - 他Providerを参照し、`State`を更新する
 

@@ -9,8 +9,9 @@ published: true
 
 # はじめに
 
-Flutter/Dartでimmutableなデータクラスを生成する際によく使用される[freezed](https://pub.dev/packages/freezed)パッケージ。  
+Flutter/Dartでimmutableなデータクラスを生成する際によく使用される[freezed](https://pub.dev/packages/freezed)パッケージ。\
 今回は、freezedを使用する際に発生した警告(`unnecessary_non_null_assertionの`)の解決方法について、自分用のメモとして本記事を執筆しました。
+
 # 問題の状況
 
 以下のようなコードで`fuga.freezed.dart`を生成した際、`analyzer`が[unnecessary_non_null_assertion](https://dart.dev/tools/diagnostic-messages#unnecessary_non_null_assertion)の警告を発生させました。

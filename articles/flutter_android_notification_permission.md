@@ -16,14 +16,16 @@ iOSでは、通知に関する実行権限を設定すると、自動的にユ�
 (本記事は[Flutter Advent Calendar 2023 6日目](https://qiita.com/advent-calendar/2023/flutter)となります。)
 
 # 通知設定
-[POST_NOTIFICATIONS ](https://developer.android.com/reference/android/Manifest.permission#POST_NOTIFICATIONS)(通知に関する実行権限)は**Android 13（API レベル 33）以上**をサポートしており、ドキュメントにもプロジェクトは13以上で作成することをを推奨しています。
+
+[POST_NOTIFICATIONS](https://developer.android.com/reference/android/Manifest.permission#POST_NOTIFICATIONS)(通知に関する実行権限)は**Android 13（API レベル 33）以上**をサポートしており、ドキュメントにもプロジェクトは13以上で作成することをを推奨しています。
 
 > プラットフォームの API を利用して権限をリクエストするには、Android 13 以降をターゲットとするようにアプリを更新することを強くおすすめします。
 > 引用元: [Android 12L（API レベル 32）以下をターゲットとするアプリの通知権限](https://firebase.google.com/docs/cloud-messaging/android/client?hl=ja#notification_permissions_for_apps_targeting_android_12l_api_level_32_or_lower)
 
-
 ## 通知使用許諾をリクエスト
+
 :::details 通知使用許諾の最小限コード
+
 ```kotlin: MainActivity.kt
 // Declare the launcher at the top of your Activity/Fragment:
 private val requestPermissionLauncher = registerForActivityResult(
@@ -55,27 +57,32 @@ private fun askNotificationPermission() {
     }
 }
 ```
+
 :::
 
 この中で**registerForActivityResult()** が登場しており、これが一番のポイントです。
 デフォルトの`FlutterActivity()` は `registerForActivityResult()` をサポートしていないため、他のclassを継承しなければなりません。
 
 ### registerForActivityResult() とは？
+
 > ComponentActivity または Fragment の Activity Result API には、結果のコールバックを登録するための registerForActivityResult() が用意されています。registerForActivityResult() は ActivityResultContract と ActivityResultCallback を受け取って、他のアクティビティを開始するために使用する ActivityResultLauncher を返します。
 > 引用元: [アクティビティの結果に対してコールバックを登録する](https://developer.android.com/training/basics/intents/result?hl=ja#register)
 
 より、プロジェクトは
+
 - ComponentActivity
 - Fragment
 
 をサポートしていなければなりません。
 
 ### FlutterFragmentActivity
+
 [FlutterFragmentActivity](https://api.flutter.dev/javadoc/io/flutter/app/FlutterFragmentActivity.html)は、**ComponentActivity** を継承しており、**registerForActivityResult()** をサポートしているため、`MainActivity` は `FlutterFragmentActivity` で書き変えなければなりません。
 
-
 # コード変更点まとめ
+
 ## 通知に関する実行権限の設定
+
 ```diff xml:AndroidManifest.xml
 ...
 +   <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
@@ -83,18 +90,21 @@ private fun askNotificationPermission() {
 ```
 
 ## ライブラリやモジュールの追加
+
 ```diff groovy:build.gradle
 dependencies {
 +   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20"
 +   implementation 'androidx.activity:activity-ktx:1.7.2'
 +   implementation 'androidx.fragment:fragment-ktx:1.6.0'
 }
-``````
+```
 
 ## MainActivity
+
 https://github.com/r0227n/zenn-article/blob/develop/samples/android_notification_permission/android/app/src/main/kotlin/com/example/android_notification_permission/MainActivity.kt
 
 # まとめ
+
 - `AndroidManifest.xml`に通知に関する実行権限を追加
 - `build.gradle`に必要なライブラリやモジュールを追加
 - `MainActivity.kt`のコードを更新
@@ -103,16 +113,18 @@ https://github.com/r0227n/zenn-article/blob/develop/samples/android_notification
 Dart側でコードを書かず、ネイティブ側で実装する必要があるため、Flutterエンジニアにとってはネイティブの知識が必要になります。
 
 # さいごに
+
 [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)や[firebase_messaging](https://pub.dev/packages/firebase_messaging)などPush通知ライブラリのドキュメントに通知使用許諾の表示方法が記載されておらず、実装時に困ったため、本記事を書きました。
 
 本記事が通知使用許諾を表示する方法の参考になれば幸いです。
 
 以上、[THE KEBABS](https://kebabsband.com/)の[THE KEBABSを抱きしめて](https://www.youtube.com/watch?v=sFBDTxHeOkY)を聴き、大人になっても青春を謳歌したい[Ryo24](https://twitter.com/r0227n_)でした。
 
-
 # サンプルプロジェクト
+
 https://github.com/r0227n/zenn-article/tree/develop/samples/android_notification_permission
 
 # 参考
+
 https://developer.android.com/about/versions/13/changes/notification-permission?hl=ja#use
 https://firebase.google.com/docs/cloud-messaging/android/client?hl=ja#request-permission13
