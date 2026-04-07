@@ -1,0 +1,55 @@
+# mise.toml - Tool version management for worktree-tui
+# https://mise.jdx.dev
+
+[tools]
+bun = "1.3.5"
+dprint = "0.49.0"
+
+
+[tasks.new]
+description = "Create a new article"
+run = "bunx zenn new:article --slug $@"
+
+[tasks.preview]
+description = "Preview the article"
+run = "bunx zenn preview"
+
+[tasks.format]
+description = "Format all files"
+run = """
+bunx dprint fmt
+"""
+
+# =============================================================================
+# Utility Tasks
+# =============================================================================
+
+[tasks.doctor]
+description = "Check development environment"
+run = """
+echo '🔍 Checking environment...'
+echo ''
+echo '📦 Tools:'
+mise ls
+echo ''
+echo '🔧 Versions:'
+bun --version
+dprint --version
+bunx oxlint --version
+bunx oxfmt --version || echo 'oxfmt: installed via bunx'
+echo ''
+echo '📁 Project:'
+ls -la
+echo ''
+echo '✅ Environment check complete!'
+"""
+
+[tasks.setup]
+description = "Initial project setup"
+run = """
+echo '🚀 Setting up worktree-tui...'
+mise install
+bun install
+claude mcp reset-project-choices
+echo '✅ Setup complete!'
+"""
