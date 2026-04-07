@@ -3,7 +3,7 @@ title: "Codexの標準セキュリティ対策とは？ macOSサンドボック�
 emoji: "🔐"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["codex", "security", "sandbox"]
-published: false
+published: true
 ---
 
 ## はじめに
