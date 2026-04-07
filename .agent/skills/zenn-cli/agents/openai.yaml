@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zenn CLI"
+  short_description: "Create and manage Zenn CLI articles and books"
+  default_prompt: "Use $zenn-cli to create or manage Zenn articles and books in this repository."
